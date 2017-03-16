@@ -85,3 +85,9 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# ignore seastar build folder
+.idea/
+build/
+include/seastar/build/
+include/seastar/c-ares/test/gmock-1.7.0/build-aux/
+include/seastar/c-ares/test/gmock-1.7.0/gtest/build-aux/
