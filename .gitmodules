@@ -1,0 +1,3 @@
+[submodule "include/seastar"]
+	path = include/seastar
+	url = git@github.com:scylladb/seastar.git
