@@ -1,6 +1,0 @@
-/home/thongpv87/CLionProjects/memcache/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/thongpv87/CLionProjects/memcache/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/thongpv87/CLionProjects/memcache/cmake-build-debug/include/CMakeFiles/edit_cache.dir
-/home/thongpv87/CLionProjects/memcache/cmake-build-debug/include/CMakeFiles/rebuild_cache.dir
-/home/thongpv87/CLionProjects/memcache/cmake-build-debug/include/seastar/CMakeFiles/edit_cache.dir
-/home/thongpv87/CLionProjects/memcache/cmake-build-debug/include/seastar/CMakeFiles/rebuild_cache.dir

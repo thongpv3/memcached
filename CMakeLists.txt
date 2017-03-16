@@ -4,10 +4,6 @@ project(memcache)
 set(CMAKE_CXX_STANDARD 14)
 
 
-
-
-
-
 #add libs
 add_subdirectory(include)
 
