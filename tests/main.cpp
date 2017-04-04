@@ -14,7 +14,6 @@ int main(int argc, char** argv) {
     try {
         app.run(argc, argv, f);
         using namespace std::chrono_literals;
-        sleep(100s);
     } catch (std::runtime_error &e) {
         std::cout << "Could not start app: " << e.what() << std::endl;
         return 1;
