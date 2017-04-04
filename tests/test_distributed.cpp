@@ -20,7 +20,6 @@ public:
         uint64_t p = 1;
         for (uint32_t i = 1; i < n; i++)
             p *= i;
-        std::cout << "factorial of (" << n <<") is " << p << std::endl;
         return make_ready_future<uint64_t>(p);
     }
 
@@ -31,7 +30,6 @@ public:
         for (uint32_t i = 0; i < n; i++) {
             s += i;
         }
-        std::cout << "sum form 1 to " << n <<" is " << s << std::endl;
         return make_ready_future<uint64_t>(s);
     }
 
@@ -54,27 +52,25 @@ future<> f() {
                                                       {Operation::SUM,       13},
                                                       {Operation::FACTORIAL, 13}};
 
+
     auto &&sv = std::make_shared<distributed<computing_service>>();
-    return sv->start().then([sv]{
+    return sv->start().then([sv] {
         return sv->invoke_on_all(&computing_service::status);
-    }).then([sv, parms{parms}] {
-        for (auto const &i:parms) {
-            switch (i.first) {
-                case Operation::SUM: {
-                    sv->invoke_on(getCpu(i.second), &computing_service::sum, i.second).then([i](uint64_t result) {
-                        std::cout << "RESULT: Sum from 1 to " << i.second << ": " << result << std::endl;
+    }).then([sv, parms] {
+        do_for_each(parms.begin(), parms.end(), [sv](auto const &it) {
+            switch (it.first) {
+                case Operation::SUM: {sv->invoke_on(getCpu(it.second), &computing_service::sum, it.second).then([it](auto result){
+                        std::cout << "Sum(" << it.second << "): " << result << std::endl;
+//                        return make_ready_future();
                     });
-                    break;
                 }
                 case Operation::FACTORIAL: {
-                    sv->invoke_on(getCpu(i.second), &computing_service::factorial, i.second).then([i](uint64_t result) {
-                        std::cout << "RESULT: Factorial of " << i.second << ": " << result << std::endl;
+                    sv->invoke_on(getCpu(it.second), &computing_service::factorial, it.second).then([it](auto result){
+                        std::cout << "Factorial(" << it.second << "): " << result << std::endl;
+//                        return make_ready_future();
                     });
-
-                    break;
                 }
             }
-        }
-        return sv->stop();
+        });
     });
 }
